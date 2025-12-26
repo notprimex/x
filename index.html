@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeX Combo Generators</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <meta name="description" content="Generate custom email:password, user:password, and credit card combos. Clean iOS-style interface.">
+    <meta name="author" content="PrimeX | Telegram: @notprimex">
+    <style>
+        body { opacity: 0; transition: opacity 0.3s ease; }
+        body.loaded { opacity: 1; }
+    </style>
+</head>
+<body>
+    <div class="ios-status-bar">
+        <div class="status-time">9:41</div>
+        <div class="status-icons">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+
+    <nav class="ios-navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo-icon">
+                    <i class="fas fa-cube"></i>
+                    <div class="logo-pulse"></div>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-main">PrimeX</span>
+                    <span class="brand-sub">Generators Studio</span>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <div class="nav-action-item" id="themeToggleContainer">
+                    <div class="theme-switch">
+                        <input type="checkbox" id="themeToggle" hidden>
+                        <label for="themeToggle" class="theme-slider">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                            <span class="theme-ball"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="nav-action-item dropdown">
+                    <button class="icon-btn subtle" id="langBtn">
+                        <i class="fas fa-globe-americas"></i>
+                        <span class="btn-label">EN</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                    <div class="dropdown-menu lang-menu">
+                        <div class="lang-option active" data-lang="en">
+                            <i class="fas fa-check"></i>
+                            <span>English</span>
+                        </div>
+                        <div class="lang-option" data-lang="ar">
+                            <i class="flag-icon"></i>
+                            <span>العربية</span>
+                        </div>
+                        <div class="lang-option" data-lang="es">
+                            <i class="flag-icon"></i>
+                            <span>Español</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-action-item">
+                    <button class="icon-btn subtle" id="settingsBtn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="nav-indicator">
+            <div class="indicator-line"></div>
+        </div>
+    </nav>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">
+                    <i class="fas fa-sliders-h"></i>
+                    <h3>Generators</h3>
+                    <span class="badge">5</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            
+            <div class="generator-categories">
+                <div class="category-section">
+                    <h4 class="category-title">Basic Generators</h4>
+                    <ul class="generator-list">
+                        <li class="generator-item active" data-generator="email">
+                            <div class="generator-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="generator-info">
+                                <span class="generator-name">Email:Password</span>
+                                <span class="generator-desc">Custom email combos</span>
+                            </div>
+                            <div class="generator-status">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </li>
+                        <li class="generator-item" data-generator="user">
+                            <div class="generator-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="generator-info">
+                                <span class="generator-name">User:Password</span>
+                                <span class="generator-desc">Username combos</span>
+                            </div>
+                            <div class="generator-status">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="category-section">
+                    <h4 class="category-title">Custom Generators</h4>
+                    <ul class="generator-list">
+                        <li class="generator-item" data-generator="custom1">
+                            <div class="generator-icon">
+                                <i class="fas fa-plus-circle"></i>
+                            </div>
+                            <div class="generator-info">
+                                <span class="generator-name">Custom Combo 1</span>
+                                <span class="generator-desc">Define your format</span>
+                            </div>
+                            <div class="custom-badge">
+                                <span>NEW</span>
+                            </div>
+                        </li>
+                        <li class="generator-item" data-generator="custom2">
+                            <div class="generator-icon">
+                                <i class="fas fa-plus-circle"></i>
+                            </div>
+                            <div class="generator-info">
+                                <span class="generator-name">Custom Combo 2</span>
+                                <span class="generator-desc">Define your format</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="category-section">
+                    <h4 class="category-title">Advanced</h4>
+                    <ul class="generator-list">
+                        <li class="generator-item" data-generator="cc">
+                            <div class="generator-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="generator-info">
+                                <span class="generator-name">Credit Cards</span>
+                                <span class="generator-desc">Card number generator</span>
+                            </div>
+                            <div class="generator-status">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="username">PrimeX</span>
+                        <span class="user-handle">@notprimex</span>
+                    </div>
+                </div>
+                <div class="telegram-connect">
+                    <a href="https://t.me/notprimex" target="_blank" class="telegram-link">
+                        <i class="fab fa-telegram-plane"></i>
+                        <span>Connect on Telegram</span>
+                    </a>
+                </div>
+                <div class="app-version">
+                    <span>v2.1.4 • iOS Style</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <header class="content-header">
+                    <div class="header-main">
+                        <h1 class="page-title" id="generatorTitle">
+                            <span class="title-text">Email:Password Generator</span>
+                            <span class="title-badge">Active</span>
+                        </h1>
+                        <div class="header-actions">
+                            <button class="header-btn" id="savePresetBtn">
+                                <i class="fas fa-bookmark"></i>
+                                Save Preset
+                            </button>
+                            <button class="header-btn outline" id="historyBtn">
+                                <i class="fas fa-history"></i>
+                                History
+                            </button>
+                        </div>
+                    </div>
+                    <p class="page-description" id="generatorDesc">
+                        Generate unlimited email:password combinations with advanced customization options. 
+                        Select domains, password types, and output format.
+                    </p>
+                    <div class="header-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-database"></i>
+                            <span>Max Lines: <strong>1,000,000</strong></span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-bolt"></i>
+                            <span>Generation Speed: <strong>Instant</strong></span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Local Processing • No Data Stored</span>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="control-panel" id="controlPanel">
+                    <div class="generator-section active" id="emailSection">
+                        <div class="section-header">
+                            <h3><i class="fas fa-envelope-open"></i> Email Configuration</h3>
+                            <div class="section-actions">
+                                <button class="section-btn" id="emailPresets">
+                                    <i class="fas fa-prescription-bottle"></i>
+                                    Presets
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="config-grid">
+                            <div class="config-card">
+                                <div class="card-header">
+                                    <i class="fas fa-at"></i>
+                                    <h4>Domain Settings</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="emailDomain" class="form-label">
+                                            <span>Primary Domain</span>
+                                            <span class="hint">Choose or customize</span>
+                                        </label>
+                                        <div class="select-wrapper">
+                                            <select id="emailDomain" class="ios-select">
+                                                <option value="gmail.com">@gmail.com</option>
+                                                <option value="yahoo.com">@yahoo.com</option>
+                                                <option value="outlook.com">@outlook.com</option>
+                                                <option value="hotmail.com">@hotmail.com</option>
+                                                <option value="icloud.com">@icloud.com</option>
+                                                <option value="protonmail.com">@protonmail.com</option>
+                                                <option value="custom">Custom Domain</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down select-arrow"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="customDomainGroup" style="display: none;">
+                                        <label for="customDomain" class="form-label">
+                                            <span>Custom Domain</span>
+                                            <span class="hint">Without @ symbol</span>
+                                        </label>
+                                        <div class="input-with-icon">
+                                            <span class="input-prefix">@</span>
+                                            <input type="text" id="customDomain" class="ios-input" placeholder="yourdomain.com">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <span>Username Pattern</span>
+                                            <span class="hint">How emails are generated</span>
+                                        </label>
+                                        <div class="radio-group">
+                                            <label class="radio-option">
+                                                <input type="radio" name="usernamePattern" value="random" checked>
+                                                <span class="radio-custom"></span>
+                                                <span>Random (8-12 chars)</span>
+                                            </label>
+                                            <label class="radio-option">
+                                                <input type="radio" name="usernamePattern" value="sequential">
+                                                <span class="radio-custom"></span>
+                                                <span>Sequential (user001, user002)</span>
+                                            </label>
+                                            <label class="radio-option">
+                                                <input type="radio" name="usernamePattern" value="dictionary">
+                                                <span class="radio-custom"></span>
+                                                <span>Dictionary Words</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="config-card">
+                                <div class="card-header">
+                                    <i class="fas fa-key"></i>
+                                    <h4>Password Settings</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="passwordOption" class="form-label">
+                                            <span>Password Type</span>
+                                            <span class="hint">Choose generation method</span>
+                                        </label>
+                                        <div class="select-wrapper">
+                                            <select id="passwordOption" class="ios-select">
+                                                <option value="random">Strong Random (12 chars)</option>
+                                                <option value="fixed">Fixed Password</option>
+                                                <option value="numbers">Numbers Only (8 digits)</option>
+                                                <option value="pattern">Custom Pattern</option>
+                                                <option value="dictionary">Dictionary Words</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down select-arrow"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="fixedPasswordGroup" style="display: none;">
+                                        <label for="fixedPassword" class="form-label">
+                                            <span>Fixed Password</span>
+                                            <span class="hint">Same for all accounts</span>
+                                        </label>
+                                        <div class="input-with-icon">
+                                            <i class="fas fa-lock"></i>
+                                            <input type="text" id="fixedPassword" class="ios-input" placeholder="Enter password">
+                                            <button class="input-action" id="generateFixedPass">
+                                                <i class="fas fa-dice"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <span>Password Strength</span>
+                                            <div class="strength-meter">
+                                                <div class="strength-bar"></div>
+                                                <div class="strength-bar"></div>
+                                                <div class="strength-bar"></div>
+                                                <div class="strength-bar"></div>
+                                                <span class="strength-label">Very Strong</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="config-card full-width">
+                                <div class="card-header">
+                                    <i class="fas fa-sliders-h"></i>
+                                    <h4>Output Configuration</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="emailLines" class="form-label">
+                                                <span>Number of Lines</span>
+                                                <span class="hint">Drag slider or input directly</span>
+                                            </label>
+                                            <div class="slider-container">
+                                                <input type="range" id="emailLines" class="ios-slider" min="1" max="1000000" value="100" step="1">
+                                                <div class="slider-controls">
+                                                    <button class="slider-btn" data-change="-1000">
+                                                        <i class="fas fa-minus"></i>
+                                                    </button>
+                                                    <div class="slider-value">
+                                                        <input type="number" id="lineCountInput" class="value-input" value="100" min="1" max="1000000">
+                                                        <span class="value-label">lines</span>
+                                                    </div>
+                                                    <button class="slider-btn" data-change="1000">
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="slider-labels">
+                                                    <span>1</span>
+                                                    <span>100K</span>
+                                                    <span>500K</span>
+                                                    <span>1M</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="outputFormat" class="form-label">
+                                                <span>Output Format</span>
+                                                <span class="hint">How combos are formatted</span>
+                                            </label>
+                                            <div class="select-wrapper">
+                                                <select id="outputFormat" class="ios-select">
+                                                    <option value="email:pass">email:password</option>
+                                                    <option value="email|pass">email|password</option>
+                                                    <option value="json">JSON Format</option>
+                                                    <option value="csv">CSV Format</option>
+                                                    <option value="sql">SQL Insert</option>
+                                                </select>
+                                                <i class="fas fa-chevron-down select-arrow"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <span>Additional Options</span>
+                                        </label>
+                                        <div class="checkbox-group">
+                                            <label class="checkbox-option">
+                                                <input type="checkbox" id="includeHeaders" checked>
+                                                <span class="checkbox-custom"></span>
+                                                <span>Include column headers</span>
+                                            </label>
+                                            <label class="checkbox-option">
+                                                <input type="checkbox" id="shuffleOutput">
+                                                <span class="checkbox-custom"></span>
+                                                <span>Shuffle output randomly</span>
+                                            </label>
+                                            <label class="checkbox-option">
+                                                <input type="checkbox" id="removeDuplicates" checked>
+                                                <span class="checkbox-custom"></span>
+                                                <span>Remove duplicate combos</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="generator-section" id="userSection" style="display: none;">
+                        <!-- User generator content will be loaded dynamically -->
+                    </div>
+                    
+                    <div class="generator-section" id="ccSection" style="display: none;">
+                        <!-- Credit card generator content will be loaded dynamically -->
+                    </div>
+                    
+                    <!-- Additional generator sections -->
+                    <div class="generator-section" id="custom1Section" style="display: none;"></div>
+                    <div class="generator-section" id="custom2Section" style="display: none;"></div>
+                </div>
+
+                <div class="action-bar">
+                    <div class="action-left">
+                        <div class="progress-indicator" id="progressIndicator" style="display: none;">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">Generating...</span>
+                        </div>
+                        <div class="generation-stats" id="generationStats" style="display: none;">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Generated <strong id="statsCount">0</strong> lines in <strong id="statsTime">0</strong>ms</span>
+                        </div>
+                    </div>
+                    <div class="action-right">
+                        <button class="ios-btn large outline" id="clearBtn">
+                            <i class="fas fa-eraser"></i>
+                            Clear All
+                        </button>
+                        <button class="ios-btn large primary" id="generateBtn">
+                            <i class="fas fa-bolt"></i>
+                            Generate Now
+                            <span class="btn-badge" id="lineCountBadge">100</span>
+                        </button>
+                        <div class="action-dropdown">
+                            <button class="ios-btn large success" id="exportBtn" disabled>
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                            <div class="dropdown-menu export-menu">
+                                <button class="export-option" data-format="copy">
+                                    <i class="far fa-copy"></i>
+                                    Copy to Clipboard
+                                </button>
+                                <button class="export-option" data-format="txt">
+                                    <i class="fas fa-file-alt"></i>
+                                    Download as .txt
+                                </button>
+                                <button class="export-option" data-format="csv">
+                                    <i class="fas fa-file-csv"></i>
+                                    Download as .csv
+                                </button>
+                                <button class="export-option" data-format="json">
+                                    <i class="fas fa-file-code"></i>
+                                    Download as .json
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <div class="results-header">
+                        <div class="results-title">
+                            <h3>
+                                <i class="fas fa-file-alt"></i>
+                                Generated Output
+                                <span class="results-count" id="resultsCount">0</span>
+                            </h3>
+                            <div class="results-actions">
+                                <button class="results-btn" id="findReplaceBtn">
+                                    <i class="fas fa-search"></i>
+                                    Find & Replace
+                                </button>
+                                <button class="results-btn" id="filterBtn">
+                                    <i class="fas fa-filter"></i>
+                                    Filter Results
+                                </button>
+                                <button class="results-btn" id="previewToggle">
+                                    <i class="fas fa-eye"></i>
+                                    Preview
+                                </button>
+                            </div>
+                        </div>
+                        <div class="results-info">
+                            <div class="info-item">
+                                <i class="fas fa-expand-arrows-alt"></i>
+                                <span>Fullscreen: <kbd>F11</kbd></span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clipboard"></i>
+                                <span>Copy: <kbd>Ctrl+C</kbd></span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-sync-alt"></i>
+                                <span id="lastGenerated">Never generated</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="output-container">
+                        <textarea id="outputArea" class="output-area" placeholder="Your generated combos will appear here...&#10;&#10;• Click 'Generate Now' to start&#10;• Use Export options to copy or download&#10;• Maximum 1,000,000 lines supported" 
+                                  spellcheck="false" readonly></textarea>
+                        <div class="output-overlay" id="outputOverlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <span>Generating combos...</span>
+                            </div>
+                        </div>
+                        <div class="output-scroll-indicator">
+                            <i class="fas fa-chevron-down"></i>
+                            <span>Scroll for more</span>
+                        </div>
+                    </div>
+                    
+                    <div class="results-footer">
+                        <div class="footer-left">
+                            <div class="footer-notice">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>For educational and authorized testing purposes only. Generated data is random and not associated with real accounts.</span>
+                            </div>
+                        </div>
+                        <div class="footer-right">
+                            <div class="footer-credits">
+                                <span>Powered by</span>
+                                <span class="credits-name">PrimeX Generator Engine v2.1</span>
+                                <span class="credits-divider">•</span>
+                                <i class="fab fa-html5"></i>
+                                <i class="fab fa-css3-alt"></i>
+                                <i class="fab fa-js-square"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="ios-home-indicator">
+        <div class="home-line"></div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+  </html>
